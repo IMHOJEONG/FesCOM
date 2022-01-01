@@ -1,0 +1,671 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>웹 개발자를 위한 대규모  서비스를 지탱하는 기술</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1f44cb1e-b72b-44cf-b23d-8e3b82d30fe1" class="page sans"><header><h1 class="page-title">웹 개발자를 위한 대규모  서비스를 지탱하는 기술</h1><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M6.98643729,14.0000972 C5.19579566,14.0000972 3.40419152,13.3106896 2.04245843,11.9323606 C-0.681017475,9.21200555 -0.680780251,4.76029539 2.04293482,2.04012507 C4.76664406,-0.68004331 9.22427509,-0.68004331 11.9480135,2.04013479 C13.272481,3.36277455 14,5.1330091 14,6.99552762 C14,8.87640182 13.2721894,10.6285043 11.9480135,11.9509302 C10.5679344,13.3105924 8.77756503,14.0000972 6.98643729,14.0000972 Z M10.2705296,7.00913883 L10.2705296,8.46099754 L10.2705296,8.65543362 L10.076181,8.65543362 L8.6543739,8.65543362 L5.72059514,8.65543362 L5.52619796,8.65543362 L5.52619796,8.46099754 L5.52619796,5.52541044 L5.52619796,3.37946773 L5.52619796,3.18502193 L5.72059514,3.18502193 L7.17253164,3.18502193 L7.36692883,3.18502193 L7.36692883,3.37946773 L7.36692883,6.81467358 L10.076181,6.81467358 L10.2705296,6.81467358 L10.2705296,7.00913883 Z M12.1601539,6.99552762 C12.1601539,5.61697497 11.6190112,4.32597154 10.6393933,3.34769528 C8.63253764,1.34336744 5.35197452,1.34061603 3.34153136,3.33944106 C3.33868273,3.34219247 3.33607716,3.34494388 3.33322852,3.34769528 C1.32397148,5.35459953 1.32372842,8.63641682 3.33322852,10.6433794 C5.34295224,12.6504489 8.62968901,12.6504489 10.6393933,10.6433794 C11.6190112,9.66506426 12.1601539,8.37408027 12.1601539,6.99552762 Z"></path></svg></span>Created</th><td><time>@January 1, 2022 11:10 AM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Tags</th><td><span class="selected-value select-value-color-brown">DB</span><span class="selected-value select-value-color-yellow">대규모 데이터</span></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Author</th><td></td></tr><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Date</th><td></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>추가로 공부해야 할 부분</th><td>Column 중에 서버/인프라를 지탱하는 기술을 참고해서 Linux에서 시행해야 함</td></tr></tbody></table></header><div class="page-body"><nav id="283610d2-f187-4c16-a9a6-46bbf366c9ef" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#80b5cd27-4a79-4415-8d73-f8b9c1080e55">매일 발생하는 미지의 문제 - Check</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3632d5d8-2883-4768-96fe-d73c390f4ffb">대규모 데이터 처리의 어려운점 </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#81d5a6b2-8640-40eb-bf64-caf18de14622">대규모 데이터의 어려움은 메모리 내에서 계산할 수 없다는 점 </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#09d9795f-ca52-4c27-b0d1-1b3c43c406e8">메모리와 디스크의 속도차</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b5b75978-bebf-46a3-9d12-5139e54432b9">OS 레벨에서의 연구</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#811317f5-5fe7-4352-9fc3-d52d4e635150">전송속도, 버스의 속도차 </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#cb482c38-bd87-413b-9451-fa6cc4a25d59">규모조정의 요소 </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4d113df2-9f4d-4c5d-85d7-3b701541eae2">웹 애플리케이션과 부하의 관계</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#574eadd0-4959-4b5e-b1f9-74121fc1e229">대규모 데이터를 다루기 위한 기초지식 </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#560d7fa8-143b-4fd8-9761-be091fee3a1f">대규모 데이터를 다루는 세 가지 급소</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c260ab5b-637d-4565-a3ae-3d5d7eaf7f46">대규모 데이터를 다루기 전 3대 전제지식</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c40baa14-49f2-4faf-8e45-d6276f1689d3">OS 캐시와 분산 </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7ce60d81-f3dd-4a42-8d4c-e9b4a9c2e199">OS의 캐시 구조 </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a87229df-6d58-45d1-a9cb-8552698b9905">가상 메모리 구조 </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#201cca1e-9edb-4640-9ef2-e0bc8feb1863">Linux의 페이지 캐시 원리</a></div></nav><ul id="bab0e3d0-4fab-4684-9a45-3328e72364f1" class="bulleted-list"><li style="list-style-type:disc">데이터 구조. 메모리. OS DB 서버 인프라</li></ul><ul id="093f7892-3194-43c8-bf8d-46f9c0c96ccf" class="bulleted-list"><li style="list-style-type:disc">미들웨어 </li></ul><ul id="b6ae0b32-5c87-4392-8e3f-72f80b3354f5" class="bulleted-list"><li style="list-style-type:disc">버전 관리 시스템. 버그 추적 시스템 </li></ul><hr id="7fe98b45-0e2a-47ab-8285-42df4bfac9da"/><ul id="0eb61c6e-5065-41ad-9385-2e0776f4767a" class="bulleted-list"><li style="list-style-type:disc">3억 5천만 레코드 <ul id="07e7092b-eaa9-43a6-a72b-d1e2fb223ee8" class="bulleted-list"><li style="list-style-type:circle">select * from relword를 실행시 응답이 반환되지 않음 </li></ul></li></ul><p id="758f6954-00f5-4594-8910-1f925c6ab718" class="">
+</p><ul id="579f7a35-dc07-4447-91e2-659f3cb17b91" class="bulleted-list"><li style="list-style-type:disc">대규모 사이즈를 기준으로 본다면 <p id="77a2dc63-6e6a-455f-b1c6-da48e38e71c9" class="">ex) 하테나 북마크</p><ul id="ec2986f1-d77c-4c15-ae8b-03efae7f5040" class="bulleted-list"><li style="list-style-type:circle">레코드 수 <ul id="c8f9b967-bdcb-4e77-baa9-4cba846b4418" class="bulleted-list"><li style="list-style-type:square">entry 테이블 : 1,520만 엔트리</li></ul><ul id="78d95ce7-4046-4704-b37e-1082cb944434" class="bulleted-list"><li style="list-style-type:square">bookmark 테이블 : 4,500만 북마크</li></ul><ul id="6ec6f457-5461-46e3-a4dc-08b21c0ba14a" class="bulleted-list"><li style="list-style-type:square">tag 테이블 : 5,000만 태그 </li></ul></li></ul><ul id="94657c3e-4e1c-46eb-b8be-571c8844e0c4" class="bulleted-list"><li style="list-style-type:circle">데이터 크기 <ul id="c73afbd4-440d-4a3d-a469-de2bc270166d" class="bulleted-list"><li style="list-style-type:square">엔트리 : 3GB</li></ul><ul id="7d3fca53-f871-4d90-be2c-21950ead9cfd" class="bulleted-list"><li style="list-style-type:square">북마크 : 5.5GB</li></ul><ul id="ea8ca63a-31a8-4959-8e9c-77ea2ca9acde" class="bulleted-list"><li style="list-style-type:square">HTML : 200GB 이상, 태크 : 4.8G</li></ul></li></ul></li></ul><ul id="d6b09ce0-f6f0-4926-add1-06a8a1345666" class="bulleted-list"><li style="list-style-type:disc">대규모 데이터로의 쿼리?<ul id="963ac83f-00c7-4688-bdc5-f117a69dab86" class="bulleted-list"><li style="list-style-type:circle">위의 규모의 DB에서 쿼리를 날리게 되면?</li></ul></li></ul><pre id="b9d45c39-ef62-4df5-ac31-495f87d76f35" class="code"><code>select url from entry use index(hoge) where eid = 9615899;</code></pre><p id="f71b4718-732d-421c-aa10-7ef6f6715f91" class="">
+</p><ul id="a40c102c-bc41-4a3a-8c23-4f18f8b69f90" class="bulleted-list"><li style="list-style-type:disc">use index(hoge) - 일부러 인덱스를 태우지 않고 쿼리를 던지고 있는 예<ul id="f3ccbe8d-e4ac-465b-8848-f4c96bfaa985" class="bulleted-list"><li style="list-style-type:circle">1건 검색하는 데 200초가 경과해도 검색 결과가 나오지 않는다?</li></ul></li></ul><p id="60c66b41-2293-4a40-8da6-77ee992cdafd" class="">
+</p><ul id="cd4d8f02-7c35-428a-9494-f306b1f0db55" class="bulleted-list"><li style="list-style-type:disc">레코드 수가 수천만 건 단위, 데이터 크기는 수 GB부터 수백 GB.<ul id="bb808c9e-229f-42a7-ae3d-382d4237c44c" class="bulleted-list"><li style="list-style-type:circle">이 정도의 데이터가 되면, 아무 생각 없이 던진 쿼리에 응답하지 않음 </li></ul><ul id="cedcfb27-13ec-4ff7-bc8d-e08767c288f5" class="bulleted-list"><li style="list-style-type:circle">디버그 목적으로 데이터를 출력해보니, 엄청난 부하가 걸렸다는 말도 장난이 아닌 상황 </li></ul></li></ul><ul id="29f0e12a-870b-45bd-aae7-2bedc9e98fcf" class="bulleted-list"><li style="list-style-type:disc">데이터가 많으면 처리하는 데 시간이 걸리게 됨 <ul id="1b6e9c43-395c-47d8-afbb-01df69172517" class="bulleted-list"><li style="list-style-type:circle">직감으로는 알겠으나 왜 그런가?</li></ul></li></ul><hr id="9a80d585-0d5a-41c3-b8cd-ea455753d13f"/><h3 id="80b5cd27-4a79-4415-8d73-f8b9c1080e55" class="">매일 발생하는 미지의 문제 - Check</h3><ul id="3c25787d-27c6-481e-948c-c6dab0ddab55" class="bulleted-list"><li style="list-style-type:disc">크고 작은 많은 문제에 대한 노하우를 다수 보유하고 있는 것은<ul id="ad7e09a3-66eb-46c6-b9b7-9363ad12f7d8" class="bulleted-list"><li style="list-style-type:circle">그만큼의 트러블을 접해 왔다는 것 </li></ul><ul id="b069bd39-4af8-437b-ad06-65cf02e53443" class="bulleted-list"><li style="list-style-type:circle">트러블이 발생하지 않았다면 애초에 그런 문제가 시스템에 내재하고 있다는 것을 좀체 알 수 없었을 것 </li></ul><ul id="c1b173ec-043c-463a-adec-505c8194463a" class="bulleted-list"><li style="list-style-type:circle">데이터가 많아지면 왠지 수고스러울 것 같아 정도의 불안감은 있어도 실제로 어떤 노고가 있는지는 해보기 전까지는 몰랐을 것 </li></ul><ul id="a05beb89-532d-48bc-9852-18dfb1aa7295" class="bulleted-list"><li style="list-style-type:circle">매일같이 뭔가 문제가 발생하면 이를 해결하기 위해 고민하는 것은 변함없음 <ul id="7240adf2-7fec-4ec0-a512-1ce248b72d43" class="bulleted-list"><li style="list-style-type:square">이렇게 되면 이렇게 해야 해라는 원리를 누군가가 알고 있는 것이 아닌 시행착오의 연속으로 노하우가 축적되어 지금에 이르렀다는 느낌 </li></ul></li></ul></li></ul><ul id="c2295265-0867-413e-a6d7-d844edcac82e" class="bulleted-list"><li style="list-style-type:disc">실제로 발생하는 문제는 미지의 문제도 많은 것이 현실임 <ul id="0b3ffecd-cf40-423e-9518-ad0e98019411" class="bulleted-list"><li style="list-style-type:circle">기본적인 사항은 파악해두고 ‘문제가 발생하면 그 자리에서 생각하자’라는 단순 명쾌한 생각도 필요하다는 것도 솔직한 생각!</li></ul></li></ul><hr id="6137edea-d496-4937-9b3e-9ea4f1fccce2"/><h3 id="3632d5d8-2883-4768-96fe-d73c390f4ffb" class="">대규모 데이터 처리의 어려운점 </h3><ul id="f9cdf78b-e064-46a6-bfe9-3358a3179519" class="bulleted-list"><li style="list-style-type:disc">메모리 내에서 계산할 수 없음 <ul id="0d7f5e04-c042-4653-b341-5a1803ce6a93" class="bulleted-list"><li style="list-style-type:circle">왜? 메모리에 올리지 않으면 기본적으로 디스크를 계속 읽어가면서 검색하게 됨 <ul id="11a80b8f-f7df-4d6a-a1bc-323acab673d1" class="bulleted-list"><li style="list-style-type:square">좀처럼 발견할 수 없는 상태가 되어버림 </li></ul></li></ul><ul id="6f4a8c69-31a7-4f2e-b787-28bd364a6763" class="bulleted-list"><li style="list-style-type:circle">데이터 건수가 많으면 그만큼 입력 데이터 건수가 늘어나므로 계산량이 많아진다는 점도 당연한 이유<ul id="2d4c619d-be0a-4131-8316-362eca2c2658" class="bulleted-list"><li style="list-style-type:square">이 점보다도 ⇒ <code>디스크를 읽고 있다</code> 는 점이 문제가 됨</li></ul></li></ul></li></ul><ul id="ca9614bb-c16e-4bf7-a781-289cf4fe888e" class="bulleted-list"><li style="list-style-type:disc">메모리 내에서 계산할 수 있다면, 아무리 무식한 방법으로 하더라도, 계산은 빨리 이루어져 200초나 기다리는 일은 없을 것 <ul id="390f93e4-a2ad-42f5-a1f0-b310fa9cf103" class="bulleted-list"><li style="list-style-type:circle">규모가 되면 데이터가 너무 많아서 메모리 내에서 계산할 수 없음 <ul id="5bb45c76-87b8-41b2-a452-dd86a81009c6" class="bulleted-list"><li style="list-style-type:square">디스크에 두고 특정 데이터를 검색하게 됨 </li></ul></li></ul><ul id="1ea9cb94-fc9a-4949-99a5-f45b5d14730e" class="bulleted-list"><li style="list-style-type:circle">그리고 디스크는 메모리에 비해 상당히 느림 </li></ul></li></ul><hr id="d991984d-b0b5-4898-9e92-6d263c26c82a"/><h3 id="81d5a6b2-8640-40eb-bf64-caf18de14622" class="">대규모 데이터의 어려움은 메모리 내에서 계산할 수 없다는 점 </h3><ul id="4a339ba1-6008-4a63-bf52-b784adc70085" class="bulleted-list"><li style="list-style-type:disc">메모리 내에서 계산할 수 없게 되면 디스크에 있는 데이터를 검색할 필요가 있음 <ul id="ef5a2bfa-8f39-4196-80b7-1b3ec4f40ee6" class="bulleted-list"><li style="list-style-type:circle">하지만 디스크는 느리므로 I/O(Input/Output)에 시간이 걸림 </li></ul><ul id="90ee9240-0016-4507-b90d-ae2680c6d79d" class="bulleted-list"><li style="list-style-type:circle">그러면 어떻게 대처할 것인가?</li></ul></li></ul><hr id="b5d7ac9b-1a98-4f89-ae90-083e67188135"/><h3 id="09d9795f-ca52-4c27-b0d1-1b3c43c406e8" class="">메모리와 디스크의 속도차</h3><ul id="d092e918-9219-4673-8d0c-8af71109a60e" class="bulleted-list"><li style="list-style-type:disc">메모리 내 특정 번지에 있는 데이터를 찾는 데이터 탐색과 디스크의 특정 원반 내에 있는 데이터를 찾는 것은 얼마의 속도차가 날까?</li></ul><ul id="89dbd71e-d94d-4618-a903-f6547f756016" class="bulleted-list"><li style="list-style-type:disc">10^5 ~ 10^6 배 이상 빠름 <ul id="5756357d-822b-4d5e-b474-a2da3ad8bf6d" class="bulleted-list"><li style="list-style-type:circle">메모리는 디스크보다 10만 배~ 100만 배 이상 빠르다 </li></ul></li></ul><ul id="c54dc442-82c6-4dc9-8374-52e7a8997ce5" class="bulleted-list"><li style="list-style-type:disc">디스크는 왜 늦을까?<ul id="f58f3a17-07bb-4847-88d7-491325fb9625" class="bulleted-list"><li style="list-style-type:circle">메모리는 전기적인 부품 ⇒ 물리적 구조는 탐색속도와 그다지 관계가 없음 <ul id="8760e1e1-88f9-42c6-92ca-e8738f3b7e4b" class="bulleted-list"><li style="list-style-type:square">메모리는 마이크로초(10^-6)단위로 포인터를 이동시킬 수 있음 </li></ul></li></ul><ul id="94170bdf-f083-46dd-b84a-65e73ebae89e" class="bulleted-list"><li style="list-style-type:circle">디스크는 동축 상에 원반이 쌓여있음 <ul id="5a7c6d0c-940c-47b5-9e25-66e175cd58ae" class="bulleted-list"><li style="list-style-type:square">이 원반이 회전하고 있고 여기서 데이터를 읽어낸다 </li></ul><ul id="0d42c533-b223-464f-8f19-a035afc0e376" class="bulleted-list"><li style="list-style-type:square">메모리와 달리 회전 등의 물리적인 동작을 수반함 <ul id="45a8ea50-c89a-4214-8d1f-eddbd20ed611" class="bulleted-list"><li style="list-style-type:disc">이 물리적인 구조가 탐색 속도에 영향을 줌 </li></ul></li></ul><ul id="cdb5dbe2-c63a-4d73-82ac-37e1e2887a25" class="bulleted-list"><li style="list-style-type:square">디스크에서는 헤드의 이동과 원반의 회전이라는 두가지 물리적인 이동이 필요함 <ul id="e0c43c76-c5c7-4dc5-a8f3-bbc2de387478" class="bulleted-list"><li style="list-style-type:disc">오늘날의 기술로도 원반의 회전속도를 빛의 속도까지 근접시킬 수는 없음 </li></ul><ul id="1e4519dd-3f5d-45f8-afeb-6d36587ca6ba" class="bulleted-list"><li style="list-style-type:disc">디스크에는 각각 밀리초 단위, 합해서 수 밀리초나 걸림</li></ul></li></ul><ul id="d5bf0259-14fc-4d2a-aa5d-1f28f4c05c7d" class="bulleted-list"><li style="list-style-type:square">메모리는 1회 탐색 시 마이크로초면 되지만, 디스크는 수 밀리초나 걸리는 것 </li></ul></li></ul><p id="ae4909a1-fd55-46c1-bbed-314dbf2349e2" class="">
+</p></li></ul><ul id="fb8a4e85-6c1d-4d78-946f-7797709d3e51" class="bulleted-list"><li style="list-style-type:disc">탐색에 사용되는 것이 CPU의 캐시에 올리기 쉬운 알고리즘이나 데이터 구조라면 메모리 내용이 CPU 캐시에 올라가므로 더욱 빨라져 나노초(10^-9) 단위로 처리할 수 있음 </li></ul><hr id="f01a7fcf-1716-4941-bd36-c28eb665ad0e"/><h3 id="b5b75978-bebf-46a3-9d12-5139e54432b9" class="">OS 레벨에서의 연구</h3><ul id="6e8b61a1-53a0-4657-ab7d-f81ee15cdc64" class="bulleted-list"><li style="list-style-type:disc">디스크는 느리지만 OS는 이것을 어느 정도 커버하는 역할을 함 <ul id="533086b7-edac-4e36-b97b-9b068068b5f6" class="bulleted-list"><li style="list-style-type:circle">OS는 연속된 데이터를 같은 위치에 쌓음 </li></ul><ul id="f104208e-3864-45a8-8d28-af7af91a5d36" class="bulleted-list"><li style="list-style-type:circle">그리고 나서 데이터를 읽을 때 1바이트씩 읽는 것이 아닌 4KB(kilobytes) 정도를 한꺼번에 읽도록 되어 있음 </li></ul><ul id="8caaafb2-7a31-42da-ba61-fc45a575999e" class="bulleted-list"><li style="list-style-type:circle">왜?<ul id="5b63fb2a-380c-4a77-91dc-0d37971ec82e" class="bulleted-list"><li style="list-style-type:square">비슷한 데이터를 비슷한 곳에 두어 1번의 디스크 회전으로 읽는 데이터 수를 많게 한다<ul id="a3ef6173-050a-4c3f-8325-e0dd7bfc5d6b" class="bulleted-list"><li style="list-style-type:disc">디스크의 회전 횟수를 최소화하지만, 결국 회전 1회당 밀리초 단위 ⇒ 메모리와의 속도 차를 피할 수 없음 </li></ul></li></ul></li></ul></li></ul><h3 id="811317f5-5fe7-4352-9fc3-d52d4e635150" class="">전송속도, 버스의 속도차 </h3><ul id="b284020d-092c-4034-80ef-4922511e8f50" class="bulleted-list"><li style="list-style-type:disc">탐색속도 측면에서 메모리가 디스크에 비해 10^5~10^6배 이상 빠르다는 얘기 <ul id="74c4b5a9-c8f1-4431-8c1e-c58264c20dee" class="bulleted-list"><li style="list-style-type:circle">전송속도 차이도 존재</li></ul></li></ul><ul id="d2322488-ed86-432e-87eb-20358edc22d8" class="bulleted-list"><li style="list-style-type:disc">메모리와 디스크 모두 CPU, 버스로 연결되어 있음 <ul id="9b5f316c-b00c-4ac7-bb7a-c535e229821c" class="bulleted-list"><li style="list-style-type:circle">탐색과 전송의 차이에 유의!</li></ul></li></ul><ul id="a03551ad-e6ed-4160-bc6d-65e757665a11" class="bulleted-list"><li style="list-style-type:disc">전송속도 → 찾은 데이터를 디스크에서 메모리로 보내거나 메모리에서 CPU로 보내는 등 컴퓨터 내부에서 전송하기 위한 속도 </li></ul><ul id="5c7f3219-9c9c-4972-b850-ef5df4930171" class="bulleted-list"><li style="list-style-type:disc">Linux에서 hdparm이라는 툴을 이용해보자 </li></ul><ul id="44807930-429c-417a-8ed3-6237c64bd25d" class="bulleted-list"><li style="list-style-type:disc">메모리와 CPU는 상당히 빠른 버스로 연결되어 있음 <ul id="0e8df29f-1aad-4ff2-a4ae-d1cbb69b0a80" class="bulleted-list"><li style="list-style-type:circle">따라서 전송해오는 중에도 시간이 걸림 </li></ul></li></ul><ul id="b52ec3a5-dd04-4dfe-b3dd-3aaa13dacc0c" class="bulleted-list"><li style="list-style-type:disc">데이터가 많아지면 많아질수록 디스크와 메모리의 차이도 나타나게 되므로 전송속도에서도 디스크는 늦어진다</li></ul><ul id="377f77df-81c6-4cd6-a4da-b9a7ddbb86d3" class="bulleted-list"><li style="list-style-type:disc">SSD는 물리적인 회전이 아니므로 탐색은 빠르지만 버스 속도가 병목이 되거나 그 밖에 구조에 기인하는 면이 있어서 역시나 메모리만큼의 속도는 나오지 않음</li></ul><p id="4b4ea8c7-9482-449a-b4ac-e35252b19a33" class="">
+</p><ul id="a850d9bb-338b-4d20-b2e0-9eb4305ba2cd" class="bulleted-list"><li style="list-style-type:disc">현대의 컴퓨터에서는 메모리와 디스크 속도차를 생각하고 애플리케이션을 만들어야 한다<ul id="c5e6533d-c0c1-4d9e-b27a-53e9c684d0b9" class="bulleted-list"><li style="list-style-type:circle">확장성을 생각할 때 매우 본질적이면서도 어려운 부분 </li></ul></li></ul><p id="3e8663c3-42b0-4b9f-9eb0-162f14f26687" class="">
+</p><ul id="8c716ca2-b14f-4894-ac83-69dee76a60d7" class="bulleted-list"><li style="list-style-type:disc">Linux 단일 호스트의 부하 - ‘서버/인프라를 지탱하는 기술’ 요약 : 찾아서 읽어보자 </li></ul><p id="97c3f04e-8af5-41b6-8326-30d7f51c0055" class="">
+</p><hr id="40a5e973-9a8a-4e17-a631-d33bd55a349e"/><h3 id="cb482c38-bd87-413b-9451-fa6cc4a25d59" class="">규모조정의 요소 </h3><ul id="b6f6644e-6986-4aa9-87ef-571797a873c9" class="bulleted-list"><li style="list-style-type:disc">웹 서비스에서는 <ul id="c739ea86-6b21-406d-afb0-6fed70d283a4" class="bulleted-list"><li style="list-style-type:circle">스케일업 - 고가의 빠른 하드웨어를 사서 성능을 높이는 전략</li></ul><ul id="c8c672c2-fbe2-4e6b-a9fd-9a2463d4be7a" class="bulleted-list"><li style="list-style-type:circle">스케일아웃 - 저가이면서 일반적인 성능의 하드웨어를 많이 나열해서 시스템 전체 성능을 올리는 전략 </li></ul><ul id="0b57da9a-0fc6-4aa6-84ae-201276398139" class="bulleted-list"><li style="list-style-type:circle">스케일 아웃 전략이 더 나은 이유는?<ul id="b1f710a9-5d07-4ffd-9b46-3eb614286626" class="bulleted-list"><li style="list-style-type:square">웹 서비스에 적합한 형태이고 비용이 저렴하다는 점과 시스템 구성에 유연성이 있다는 점이 포인트 </li></ul><ul id="2c655f88-02fd-4f83-a33d-953e6ff2988c" class="bulleted-list"><li style="list-style-type:square">하드웨어 가격이 성능과 비례하지 않는다는 것<ul id="01b661ed-595a-4a62-b76a-1e851777577f" class="bulleted-list"><li style="list-style-type:disc">동일한 성능을 확보할 때 저가의 하드웨어를 나열해서 확보하는 편이 더 낫다는 것 </li></ul></li></ul></li></ul></li></ul><ul id="09a5509c-e92d-4a56-a4bb-876448dc170a" class="bulleted-list"><li style="list-style-type:disc">스케일아웃은 하드웨어를 나열해서 성능을 높이는 ⇒ 하드웨어를 횡으로 전개해서 확장성을 확보해가게 된다<ul id="132964da-79c9-4c59-b17e-6ccc410b772e" class="bulleted-list"><li style="list-style-type:circle">이 때 CPU 부하의 확장성을 확보하기는 쉽다 </li></ul></li></ul><ul id="188769f9-385f-45e8-a64f-1e684f914ff8" class="bulleted-list"><li style="list-style-type:disc">웹 애플리케이션에서 계산을 수행하고 있을 때,<ul id="a1f38d19-dd79-4fe7-b00e-e9f6b9206457" class="bulleted-list"><li style="list-style-type:circle">HTTP 요청을 받아 DB에 질의하고 DB로부터 응답받은 데이터를 가공해서 HTML로 클라이언트에 반환할 때는 기본적으로 CPU 부하만 소요되는 부분 <ul id="7a8cc194-237c-41fa-9279-50bbf36fe2d6" class="bulleted-list"><li style="list-style-type:square">서버 구성 중에 프록시나 AP(Application Server)가 담당할 일</li></ul></li></ul></li></ul><ul id="e7b8880d-e290-4c90-af0e-13a6c445a671" class="bulleted-list"><li style="list-style-type:disc">DB 서버 측면에서는 I/O 부하가 걸림 </li></ul><h3 id="4d113df2-9f4d-4c5d-85d7-3b701541eae2" class="">웹 애플리케이션과 부하의 관계</h3><ul id="94a42ee3-fa1f-449e-b638-faca556d73a1" class="bulleted-list"><li style="list-style-type:disc">프록시, AP, DB</li></ul><ul id="3e28d1b6-6075-4ba0-bf21-a935c2832af6" class="bulleted-list"><li style="list-style-type:disc">프록시에서 AP 서버로 요청이오고 DB에 도달해서 I/O가 발생함 <ul id="055b76cd-dae5-451d-be2e-1d19c0bd8c78" class="bulleted-list"><li style="list-style-type:circle">이 I/O가 발생해서 되돌아온 콘텐츠를 변경한 후 클라이언트로 응답함 </li></ul><ul id="a7f87d7f-e374-4624-9331-5f0465469f5c" class="bulleted-list"><li style="list-style-type:circle">기본적으로 AP 서버에는 I/O 부하가 걸리지 않고 DB 측에 I/O 부하가 걸림 </li></ul></li></ul><ul id="73b551e2-d6f0-4262-870c-d6a0185051f9" class="bulleted-list"><li style="list-style-type:disc">AP 서버는 CPU 부하만 걸리므로 분산이 간단함 <ul id="8598d858-1529-4d23-837f-32c21ed20ef0" class="bulleted-list"><li style="list-style-type:circle">왜? 기본적으로 데이터를 분산해서 갖고 있는 것이 아님 <ul id="ec252c45-70a4-466c-8356-cd47092127be" class="bulleted-list"><li style="list-style-type:square">동일한 호스트가 동일하게 작업을 처리하기만 하면 분산할 수 있음 <ul id="6f3d9972-9125-435e-989e-895455a8dea8" class="bulleted-list"><li style="list-style-type:disc">대수를 늘리기만 하면 간단히 확장해 갈 수 있음 </li></ul></li></ul></li></ul><ul id="bbc16675-c69a-4380-8960-1b01dd9ddb85" class="bulleted-list"><li style="list-style-type:circle">결국 새로운 서버를 추가하고자 한다면 원래 있던 서버와 완전히 동일한 구성을 갖는 서버 <ul id="a87e2aff-ee8e-4c8d-a1e8-db6df4e503aa" class="bulleted-list"><li style="list-style-type:square">심하게 말하면 복사본을 마련해서 추가하면 됨 </li></ul></li></ul></li></ul><ul id="e4ec309c-7463-48a9-b623-abe127bd419d" class="bulleted-list"><li style="list-style-type:disc">요청을 균등하게 분산하는 것은 로드밸런서(Load Balancer)라는 장치가 해줌 </li></ul><p id="0c08cbdc-a5f0-4866-84a3-16007c4a404e" class="">
+</p><ul id="f489657d-d1e7-44a8-ae59-5a39dbf73a70" class="bulleted-list"><li style="list-style-type:disc">I/O 부하에는 문제가 있음 <ul id="d929b62d-8345-4d5e-ac7f-9b3fa633534d" class="bulleted-list"><li style="list-style-type:circle">DB를 함께 놓는다고 하면, AP에서 DB로의 쓰기가 발생했을 때, 이전에 있던 DB와 새로운 DB의 데이터를 어떻게 동기화할 것인가?</li></ul><ul id="24a5ab49-4b5c-4555-ad9e-6d226dd9e2b5" class="bulleted-list"><li style="list-style-type:circle">이전 DB 데이터를 새로운 DB에 복사하면 좋겠지만 이전 DB에 쓰인 내용을 어떻게 새로운 DB에 쓸 것인가라는 상황에 놓임 </li></ul><ul id="c6b90674-5701-467a-9327-680dd5339f93" class="bulleted-list"><li style="list-style-type:circle">쓰기는 간단히 분산할 수가 없음 </li></ul></li></ul><p id="bacc273e-96b5-4c35-9312-8c20e10dacbd" class="">
+</p><ul id="d47b9ed5-e29b-4608-a379-f8cb90b0c4ca" class="bulleted-list"><li style="list-style-type:disc">DB 확장성을 확보하는 것은 상당히 어려움 <ul id="4709f273-54ba-4d1a-9820-9fa382d7620b" class="bulleted-list"><li style="list-style-type:circle">디스크가 느리다는 문제도 여기에 영향을 미침 </li></ul><ul id="d43d4997-b618-4c5a-93cb-28259172c639" class="bulleted-list"><li style="list-style-type:circle">디스크 I/O를 많이 발생시키는 구성으로 되어 있으면 속도차 문제가 생김 </li></ul><ul id="8b6bf435-13b1-42c7-826c-22d22f0b307b" class="bulleted-list"><li style="list-style-type:circle">데이터가 커지면 커질수록 메모리에서 처리 못하고 디스크 상에서 처리할 수 밖에 없는 요건이 늘어남 </li></ul><ul id="ebfb2191-48d7-4021-b186-c0d9177e38bd" class="bulleted-list"><li style="list-style-type:circle">즉, 대규모 환경에서는 I/O 부하를 부담하고 있는 서버는 애초에 분산시키기 어려움 </li></ul><ul id="a79fcaeb-5d34-4966-ae32-c41c3533e4c3" class="bulleted-list"><li style="list-style-type:circle">디스크 I/O가 많이 발생하면 서버가 금세 느려지는 본질적인 문제가 존재</li></ul><p id="0d62d749-7869-41cf-9de2-43afddb96771" class="">
+</p></li></ul><ul id="339c7c4a-e2d0-44a2-af36-04886591e957" class="bulleted-list"><li style="list-style-type:disc">CPU 부하의 규모조정은 간단하다 <ul id="38d6ec93-b5a8-415e-a229-7bc0ed5e2893" class="bulleted-list"><li style="list-style-type:circle">같은 구성의 서버를 늘리고 로드밸런서로 분산 </li></ul><ul id="d5396a16-3a62-43ab-b7a1-10fa939d265e" class="bulleted-list"><li style="list-style-type:circle">웹, AP 서버, 크롤러</li></ul></li></ul><ul id="0343192c-c3cd-45d2-9698-d104afb620c2" class="bulleted-list"><li style="list-style-type:disc">I/O 부하의 규모저정은 어렵다 <ul id="78e51d3c-01ae-4a85-86ef-402e3678ca30" class="bulleted-list"><li style="list-style-type:circle">DB</li></ul><ul id="04b08d4a-9de4-4449-8f6c-78b61cf6fb7f" class="bulleted-list"><li style="list-style-type:circle">대규모 데이터 </li></ul><p id="be5eea38-ed02-4f91-9ce0-0cc9783b7d06" class="">
+</p></li></ul><hr id="f01d8116-b408-4ccd-a85a-04921c4d7e35"/><h3 id="574eadd0-4959-4b5e-b1f9-74121fc1e229" class="">대규모 데이터를 다루기 위한 기초지식 </h3><ul id="f8bcffad-bd56-4310-a6b2-06606641826d" class="bulleted-list"><li style="list-style-type:disc">프로그래머를 위한 대규모 데이터 기초 <ul id="4fb29cab-606e-48aa-aaa5-3cd654a17c83" class="bulleted-list"><li style="list-style-type:circle">대규모 데이터는 메모리에서 처리하기 어렵고 디스크는 느리다 <ul id="2d09d6cf-fd80-436a-a99f-b61d67ce1bfd" class="bulleted-list"><li style="list-style-type:square">또한, 분산하기도 곤란하다는 어려움이 있다는 것</li></ul></li></ul><ol type="1" id="e7e6d146-7553-4d39-a780-07a228a0437f" class="numbered-list" start="1"><li>프로그램을 작성할 때의 요령</li></ol><ol type="1" id="58ec767f-e8d9-4e7b-85a6-2590eb89d8db" class="numbered-list" start="2"><li>프로그램 개발의 근간이 되는 기초라는 점에서 전제로 알아두었으면 하는 것 </li></ol></li></ul><hr id="64eea769-7b97-4ccb-809e-85ec97d6b1aa"/><h3 id="560d7fa8-143b-4fd8-9761-be091fee3a1f" class="">대규모 데이터를 다루는 세 가지 급소</h3><ul id="bc184901-d724-4a3d-b4c3-f4b68d6f5efb" class="bulleted-list"><li style="list-style-type:disc">대규모 시스템을 고민하게 만드는 대규모 데이터<ul id="e52cbc78-d9d0-462e-9210-51a799dc16f8" class="bulleted-list"><li style="list-style-type:circle">어떻게 하면 메모리에서 처리를 마칠 수 있을까?</li></ul><ul id="b7a6d24b-f38d-477d-b20d-1e84ae7b289b" class="bulleted-list"><li style="list-style-type:circle">메모리에서 처리를 마쳐야 하는 이유 <ul id="56dbb8e4-2ea9-4ee6-a001-c785d167aaa8" class="bulleted-list"><li style="list-style-type:square">디스크 탐색 횟수가 확장성, 성능에 크게 영향을 주기 때문</li></ul></li></ul><ol type="1" id="dc372b19-7b70-41dd-9282-a5472940d838" class="numbered-list" start="1"><li>디스크 탐색 횟수 최소화, 국소성을 활용한 분산 실현</li></ol><ol type="1" id="9752d2fc-bc0d-4fb4-87eb-bc0d81b6c9dc" class="numbered-list" start="2"><li>데이터량 증가에 강한 알고리즘, 데이터 구조 <ol type="a" id="7dc030c6-94c2-4bcb-b488-7c817249f700" class="numbered-list" start="1"><li>선형 검색 ⇒ 이분 검색 (O(n) → O(log n))</li></ol><ol type="a" id="660d1f92-6467-43e7-bc11-0a5c5d78b948" class="numbered-list" start="2"><li>log n으로 수십 번만에 마칠 수 있음(레코드 10만 건이 있을 때)</li></ol></li></ol><ol type="1" id="0a8f2e56-cf2f-477e-943e-94f4f1427026" class="numbered-list" start="3"><li>데이터 압축, 정보검색기술 <ol type="a" id="bc4fda33-83c4-4148-8965-ba8745e59243" class="numbered-list" start="1"><li>압축해서 데이터량을 줄일 수 있다면, 읽어내는 탐색 횟수도 적어지게 됨 <ol type="i" id="170b4423-e3a6-4ddc-9359-03de7d583640" class="numbered-list" start="1"><li>디스크 읽는 횟수를 최소화할 수 있다는 것</li></ol><ol type="i" id="b37de110-bc2b-472b-aa82-57297f6e1277" class="numbered-list" start="2"><li>메모리에 캐싱하기 쉬워짐 </li></ol><ol type="i" id="702c0e52-ef4b-4b19-8ab9-0d0724af477a" class="numbered-list" start="3"><li>데이터가 크면 메모리에서 넘치거나 디스크에 저장해도 읽어내기에 시간이 걸림 </li></ol></li></ol><ol type="a" id="b213ce70-efb0-4437-ba65-f49af2d5f36a" class="numbered-list" start="2"><li>확장성 면에서 DB에만 맡겨서 해결할 수 없을 때<ol type="i" id="1ea7edb2-4193-48df-8a77-ea66339a263a" class="numbered-list" start="1"><li>특정 용도에 특화된 검색엔진 등을 만들어서 해당 검색 시스템을 웹 애플리케이션에서 이용하는 형태로 전환한다면 속도를 제대로 확보할 수 있기 때문 </li></ol></li></ol></li></ol></li></ul><h3 id="c260ab5b-637d-4565-a3ae-3d5d7eaf7f46" class="">대규모 데이터를 다루기 전 3대 전제지식</h3><ol type="1" id="e491d7cb-a440-4611-a1af-2bd95bb4ef17" class="numbered-list" start="1"><li>OS 캐시</li></ol><ol type="1" id="15f1d77d-f179-4751-bc37-28459bd46bd6" class="numbered-list" start="2"><li>분산을 고려해서 RDBMs를 운용할 때는 어떻게 해야만 하는 가</li></ol><ol type="1" id="60afe109-3c63-4934-89d5-833875e307ea" class="numbered-list" start="3"><li>대규모 환경에서 알고리즘과 데이터 구조를 사용한다는 것 </li></ol><p id="0f67d212-42e6-46ae-a86c-f4623b9062ae" class="">
+</p><ul id="fd298840-0fbe-4406-96b9-79515e4603e3" class="bulleted-list"><li style="list-style-type:disc">대수가 많다고 해서 빠른 것은 아니라는 것<ul id="816a5a48-b04b-4acb-af0d-17147fcb4596" class="bulleted-list"><li style="list-style-type:circle">DB 서버가 I/O 부하의 규모조정이 어렵기 때문에 DB 서버쪽이 반드시 대수가 많아지는 것은 아님</li></ul></li></ul><p id="2ca56fdf-1efb-464a-993f-f2a8585b528b" class="">
+</p><ul id="6ab526b8-491a-4646-b611-0ad818767d34" class="bulleted-list"><li style="list-style-type:disc">AP 서버는 늘리면 늘릴수록 점점 빨라짐 ⇒ 부족해지면 늘리면 그만 <ul id="68d5d55e-2491-4c06-b08f-a0e36497d765" class="bulleted-list"><li style="list-style-type:circle">반면 DB 서버는 늘리더라도 의미가 없는 경우가 자주 있음 </li></ul></li></ul><hr id="0129a828-7f7b-4449-aba8-0c284d87af15"/><h3 id="c40baa14-49f2-4faf-8e45-d6276f1689d3" class="">OS 캐시와 분산 </h3><ul id="1bd34f13-b1cb-4c87-b37e-58e0202c0c72" class="bulleted-list"><li style="list-style-type:disc">대규모 데이터를 다룰 때의 포인트<ul id="81f8a6c6-95d5-42c4-add4-17d37cbaf867" class="bulleted-list"><li style="list-style-type:circle">I/O 대책에 대한 기반은 OS에 있음 </li></ul><ul id="3302a6d7-683b-4089-a618-a359ab058653" class="bulleted-list"><li style="list-style-type:circle">OS 캐시로 제대로 처리할 수 없게 되었을 때 분산에 대해 고려해보는 것</li></ul></li></ul><h3 id="7ce60d81-f3dd-4a42-8d4c-e9b4a9c2e199" class="">OS의 캐시 구조 </h3><ul id="b9b3ec05-6835-4c67-af25-0b27b67aafa3" class="bulleted-list"><li style="list-style-type:disc">OS의 캐시 구조를 알고 애플리케이션 작성하기 ⇒ 페이지 캐시 <ul id="f3c26a89-afe6-4e5c-bceb-c1b70a285e68" class="bulleted-list"><li style="list-style-type:circle">디스크와 메모리 간 속도차가 10^5~10^6배 이상 난다고 했는데, 원래 OS에는 디스크 내의 데이터에 빠르게 액세스할 수 있도록 하는 구조가 갖춰져 있음 </li></ul><ul id="c19a9901-1ef7-4c44-948e-643c0b1de6b4" class="bulleted-list"><li style="list-style-type:circle">OS는 메모리를 이용해서 디스크 액세스를 줄인다<ul id="a3aa293e-0e08-4313-98b9-517459219fed" class="bulleted-list"><li style="list-style-type:square">원리를 알고 이를 전제로 애플리케이션을 작성한다면?<ul id="16885a88-ac50-444d-9f18-78cd002b658b" class="bulleted-list"><li style="list-style-type:disc">OS에 상당부분을 맡길 수 있음 </li></ul></li></ul></li></ul><ul id="11c0be2f-b9c0-4630-ae6d-2ec48f165556" class="bulleted-list"><li style="list-style-type:circle">그것이 바로 OS 캐시 </li></ul></li></ul><ul id="46fa3ffc-aa8d-4ab0-b7d4-2a92f07293d3" class="bulleted-list"><li style="list-style-type:disc">그 원리가 바로 OS 캐시<ul id="6f140634-1612-47af-9cfe-e00d866bd687" class="bulleted-list"><li style="list-style-type:circle">Linux의 경우는 페이지 캐시나 파일 캐시, 버퍼 캐시라고 하는 캐시 구조를 가짐<ul id="dde7c48e-3cb7-49b4-9fc7-d733e21851f8" class="bulleted-list"><li style="list-style-type:square">파일 캐시라고 하는 것은 적절치 않다??</li></ul><ul id="8f0e71b8-0887-4258-a1f0-08fc408708ed" class="bulleted-list"><li style="list-style-type:square">Linux 페이지 구조 </li></ul></li></ul></li></ul><ul id="ce7a94dc-6e7d-4803-966a-e29ef7ccf77b" class="bulleted-list"><li style="list-style-type:disc">가상 메모리 = 스왑 이라는 설명은 잘못되었다 <ul id="c160feab-14af-4ffe-8bb3-7f692726b8e6" class="bulleted-list"><li style="list-style-type:circle">OS는 가상 메모리 구조를 갖추고 있음 </li></ul><ul id="c43a8653-36ed-4476-9161-c8e464483d0c" class="bulleted-list"><li style="list-style-type:circle">가상 메모리 구조?<ul id="73a89333-d362-4eb4-8963-b44cd235f14a" class="bulleted-list"><li style="list-style-type:square">논리적인 선형 어드레스를 물리적인 물리 어드레스로 변환하는 것 </li></ul><ul id="67642abd-25d9-42dc-95bf-5f162024b1c3" class="bulleted-list"><li style="list-style-type:square">선형 어드레스(0xbffff4444) ===⇒ 페이징 구조 ===⇒ 물리 어드레스(0x00002123)</li></ul></li></ul><ul id="76fcdb9e-e162-4b1d-9293-e03c2564496c" class="bulleted-list"><li style="list-style-type:circle">스왑?<ul id="7765ab37-e0c4-4d50-941a-fb7031bd34c9" class="bulleted-list"><li style="list-style-type:square">가상 메모리를 응용한 기능 중 하나로 물리 메모리가 부족할 때 2차 기억장치(주로 디스크)를 메모리로 간주해서 외형상의 메모리 부족을 해소하는 원리 </li></ul></li></ul></li></ul><h3 id="a87229df-6d58-45d1-a9cb-8552698b9905" class="">가상 메모리 구조 </h3><ul id="9462f1b5-f380-4419-9315-c9b70b61a2c0" class="bulleted-list"><li style="list-style-type:disc">가상 메모리 구조가 존재하는 가장 큰 이유는?<ul id="3c962d24-c992-4567-ac9d-ffbc2a8416fc" class="bulleted-list"><li style="list-style-type:circle">물리적인 하드웨어를 OS에서 추상화하기 위해</li></ul><ul id="d351c447-56c6-41fa-b0c0-6ca04e171640" class="bulleted-list"><li style="list-style-type:circle">메모리, OS, 애플리케이션 프로세스 </li></ul><ul id="7a8cffae-9d39-4874-9e4b-0e1097f8f493" class="bulleted-list"><li style="list-style-type:circle">메모리에는 주소가 붙어있다<ul id="2be14d28-2684-4b3f-8e08-728270607150" class="bulleted-list"><li style="list-style-type:square">0x00002123이라는 32비트 주소가 붙어 있음</li></ul><ul id="beb6fdde-d8b4-4a98-add2-026ea235d141" class="bulleted-list"><li style="list-style-type:square">그러나 1의 어드레스를 직접 프로그램에서 사용하게 되면 여러 곤란한 일이 일어난다</li></ul></li></ul></li></ul><ul id="e58e9ace-66ca-45c6-967a-21c5e4540360" class="bulleted-list"><li style="list-style-type:disc">프로세스에서 메모리를 필요로 하게 되면, 느닷없이 메모리 내 주소를 가져오는 것이 아니라<ul id="d0e6c6f7-71aa-4935-af57-2426f4aab546" class="bulleted-list"><li style="list-style-type:circle">OS가 메모리에서 비어 있는 곳을 찾는다 </li></ul><ul id="de7465da-3fc2-4590-af11-94a43272e1a9" class="bulleted-list"><li style="list-style-type:circle">메모리는 OS가 관리하고 있으며, 비어 있는 곳을 반환할 때 0x00002123과는 다른 어드레스를 반환한다</li></ul><ul id="06a1fc91-e1f5-48a2-a030-b45a7e6e7b9b" class="bulleted-list"><li style="list-style-type:circle">왜?<ul id="31dc1bd3-6e0b-4555-b97c-7a6d5c1326bb" class="bulleted-list"><li style="list-style-type:square">개별 프로세스에서는 메모리의 어느 부분을 사용하는지 관여하지 않고, <code>반드시 특정 번지부터 시작</code> 하는 것으로 정해져 있으면 다루기 쉽기 때문</li></ul><p id="5569e486-a75f-48c9-8249-3b1d8dff4f29" class="">ex) 유닉스의 공유 라이브러리는 프로세스 내의 지정된 주소로 할당되도록 되어 있음 <div class="indented"><ul id="5696591d-716f-40c2-92e9-dc90ee8e01a6" class="bulleted-list"><li style="list-style-type:disc">프로세스 내에서 이 특정 어드레스는 예약되어 있다 <ul id="f36cc8e9-00a5-4839-ba8a-e594f28f3fc7" class="bulleted-list"><li style="list-style-type:circle">이 때 만일 시작주소가 각기 다르다면?<ul id="b1b13df1-74ab-44e8-a633-660b310d3038" class="bulleted-list"><li style="list-style-type:square">메모리를 확보해야 할 주소위치를 찾기가 매우 어려울 것 </li></ul></li></ul></li></ul></div></p></li></ul></li></ul><ul id="a5c3bea7-b417-4218-b6c0-69e8d25da1db" class="bulleted-list"><li style="list-style-type:disc">OS 관련 참고서를 더 자세히 읽어보자 </li></ul><ul id="b302590e-e81c-4a77-b21c-c3ffa600a13d" class="bulleted-list"><li style="list-style-type:disc">Point!<ul id="05bfc1c6-f675-48ac-b503-17fc9120a406" class="bulleted-list"><li style="list-style-type:circle">OS라는 것은 메모리를 직접 프로세스로 넘기는 것이 아니라 일단 커널 내에서 메모리를 추상화하고 있다는 점 ⇒ 가상 메모리 구조 </li></ul><ul id="40a19d16-d2a7-4452-882a-ff8dd3823b14" class="bulleted-list"><li style="list-style-type:circle">어드레스 변환에 있는 다양한 장점이란?</li></ul></li></ul><p id="eadbcab8-3495-451b-b741-9d2af94b5f18" class="">
+</p><ul id="3f4d2c50-cca3-43cb-b439-128fcb3c8d3c" class="bulleted-list"><li style="list-style-type:disc">디스크의 경우에도 OS가 모아서 읽어낸다는 것 ⇒ 메모리를 확보할 때 그와 마찬가지 방식으로<ul id="43ea1f16-dd45-49ee-8658-4dab8d98398a" class="bulleted-list"><li style="list-style-type:circle">메모리 1바이트씩 액세스 하는 것이 아니라 적당히 4KB 정도를 블록으로 확보해서 프로세스에 넘긴다</li></ul><ul id="7f29712e-2884-4e78-a9e2-e5823a5d0abf" class="bulleted-list"><li style="list-style-type:circle">여기서 1개의 블록을 페이지라고 함 </li></ul><ul id="adaf5bf7-2897-4a31-be99-6d966a7ba4a2" class="bulleted-list"><li style="list-style-type:circle">OS는 프로세스에서 메모리를 요청받으면 페이지를 1개 이상, 필요한 만큼 페이지를 확보해서 프로세스에 넘기는 작업을 수행한다 </li></ul></li></ul><h3 id="201cca1e-9edb-4640-9ef2-e0bc8feb1863" class="">Linux의 페이지 캐시 원리</h3><ul id="dee42f2d-4141-4cc4-915a-f4f7c06ce5b8" class="bulleted-list"><li style="list-style-type:disc"></li></ul><p id="8dfb7296-5056-4c20-86fe-1b531fdb4573" class="">
+</p></div></article></body></html>

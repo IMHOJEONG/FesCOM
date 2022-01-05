@@ -1,15 +1,8 @@
 <p>
-    <img src="./main_image.jpg" alt="기본 이미지">
+    <img src="./main_image.jpg" alt="기본 이미지" style="borderRadius: 100px;">
 </p>
 
-<style>
-    [class="main_image"] {
-        border-radius: 60%;
-    }
-</style>
-
-
-<p> 컴퓨터공학의 기본 준비를 위한 REPO </p>
+<p align="center"> 컴퓨터공학의 기본 준비를 위한 REPO </p>
 
 ### 기본 계획
 

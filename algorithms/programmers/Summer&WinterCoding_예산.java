@@ -1,7 +1,6 @@
 import java.util.*;
 class Solution {
     public int solution(int[] d, int budget) {
-        int answer = 0;
         // greedy 적으로 풀 수 있는가
         Arrays.sort(d);
         

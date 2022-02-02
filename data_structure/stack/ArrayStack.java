@@ -15,4 +15,6 @@ public class ArrayStack {
         array = new int[capacity];
         top = -1;
     }
+
+    
 }

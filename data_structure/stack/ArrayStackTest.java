@@ -3,6 +3,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.EmptyStackException;
+
 public class ArrayStackTest {
     public ArrayStack arrayStack;
     @BeforeEach
@@ -36,10 +38,10 @@ public class ArrayStackTest {
         assertThat(arrayStack.isStackFull())
             .isSameAs(false);
     }
-
+    
     @DisplayName("ArrayStack push 테스트")
     @Test
-    public void push_ArrayStack()
+    public void push_ArrayStack() throws StackException
     {
         arrayStack.push(1);
         assertThat(arrayStack.getArray())
@@ -47,4 +49,16 @@ public class ArrayStackTest {
             .contains(1);
     }
 
+    @DisplayName("ArrayStack pop 테스트")
+    @Test
+    public void pop_ArrayStack() throws StackException{
+
+        arrayStack.push(1);
+        int val = arrayStack.pop();
+        assertThat(val)
+        .isSameAs(1);
+        assertThatThrownBy(()->{
+            arrayStack.pop();
+        }).isInstanceOf(EmptyStackException.class); 
+       }
 }

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 class StackException extends Exception {
-    public StackException(String message){
+    public StackException(String message) {
         super(message);
     }
 }
@@ -12,7 +12,6 @@ class StackException extends Exception {
 @Getter
 @Setter
 public class ArrayStack {
-
 
     private int top;
     private int capacity;
@@ -29,43 +28,36 @@ public class ArrayStack {
     }
 
     public boolean isStackFull() {
-        return (top == capacity-1);
+        return (top == capacity - 1);
     }
 
     public void push(int data) throws StackException {
 
         try {
-            if(isStackFull()){
+            if (isStackFull()) {
                 throw new StackException("스택 꽉 참");
+            } else {
+                array[++top] = data;
             }
-            else{
-                array[++top] = data; 
-            }
-        }
-        catch(StackException e){
+        } catch (StackException e) {
             e.printStackTrace();
             throw e;
         }
     }
 
     public int pop() {
-        
-        try{
-            if(isEmpty()){
+
+        try {
+            if (isEmpty()) {
                 throw new EmptyStackException();
-            }
-            else{
+            } else {
                 return array[top--];
             }
-        }
-        catch(EmptyStackException e){
+        } catch (EmptyStackException e) {
             e.printStackTrace();
             throw e;
         }
 
     }
-
-    
-
 
 }

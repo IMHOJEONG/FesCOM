@@ -20,7 +20,10 @@ public class ArrayStack {
         return top == -1;
     }
 
-    
+    public boolean isStackFull() {
+        return (top == capacity-1);
+    }
+
     
 
 

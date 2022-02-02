@@ -26,8 +26,15 @@ public class ArrayStackTest {
     @DisplayName("ArrayStack isEmpty 테스트")
     @Test
     public void isEmpty_ArrayStack(){
-        assertThat(array.getTop())
-            .isSameAs(-1);
+        assertThat(array.isEmpty())
+            .isSameAs(true);
+    }
+
+    @DisplayName("ArrayStack isStackFull 테스트")
+    @Test
+    public void isStackFull_ArrayStack() {
+        assertThat(array.isStackFull())
+            .isSameAs(false);
     }
 
 }

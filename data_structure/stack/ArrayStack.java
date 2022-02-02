@@ -16,5 +16,12 @@ public class ArrayStack {
         top = -1;
     }
 
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
     
+    
+
+
 }

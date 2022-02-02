@@ -24,6 +24,21 @@ public class ArrayStack {
         return (top == capacity-1);
     }
 
+    public void push(int data) {
+
+        try {
+            if(isStackFull()){
+                throw new Exception("스택이 꽉 참");
+            }
+            else{
+                array[++top] = data; 
+            }
+        }
+        catch( Exception e){
+            e.printStackTrace();
+        }
+    }
+
     
 
 

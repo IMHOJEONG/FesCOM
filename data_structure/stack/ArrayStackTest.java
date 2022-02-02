@@ -4,21 +4,21 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 public class ArrayStackTest {
-    public ArrayStack array;
+    public ArrayStack arrayStack;
     @BeforeEach
     public void setting() {
-        array = new ArrayStack();
+        arrayStack = new ArrayStack();
     }
 
     @DisplayName("ArrayStack 첫 생성테스트")
     @Test
     public void first_makeStack(){
 
-        assertThat(array.getArray())
+        assertThat(arrayStack.getArray())
             .hasSize(1);
-        assertThat(array.getCapacity())
+        assertThat(arrayStack.getCapacity())
             .isSameAs(1);
-        assertThat(array.getTop())
+        assertThat(arrayStack.getTop())
             .isSameAs(-1);
         
     }
@@ -26,15 +26,25 @@ public class ArrayStackTest {
     @DisplayName("ArrayStack isEmpty 테스트")
     @Test
     public void isEmpty_ArrayStack(){
-        assertThat(array.isEmpty())
+        assertThat(arrayStack.isEmpty())
             .isSameAs(true);
     }
 
     @DisplayName("ArrayStack isStackFull 테스트")
     @Test
     public void isStackFull_ArrayStack() {
-        assertThat(array.isStackFull())
+        assertThat(arrayStack.isStackFull())
             .isSameAs(false);
+    }
+
+    @DisplayName("ArrayStack push 테스트")
+    @Test
+    public void push_ArrayStack()
+    {
+        arrayStack.push(1);
+        assertThat(arrayStack.getArray())
+            .hasSize(1)
+            .contains(1);
     }
 
 }

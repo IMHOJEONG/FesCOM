@@ -21,5 +21,9 @@ public class ArrayQueue {
         return new ArrayQueue(size);
     }
 
+    public boolean isEmpty(){
+        return (front == -1);
+    }
+
 
 }

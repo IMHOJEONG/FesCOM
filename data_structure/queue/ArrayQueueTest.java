@@ -25,5 +25,13 @@ public class ArrayQueueTest {
         assertThat(arrayQueue.getRear())
             .isSameAs(-1);    
     }  
+    @DisplayName("ArrayQueue isEmpty 메소드 테스트")
+    @Test
+    public void test_isEmpty(){
+
+        assertThat(arrayQueue.isEmpty())
+            .isSameAs(true);
+    }
+
 
 }

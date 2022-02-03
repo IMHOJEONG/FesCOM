@@ -10,11 +10,15 @@ public class ArrayQueue {
     private int capacity;
     private int[] array;
 
-    ArrayQueue(int size){
+    private ArrayQueue(int size){
         capacity = size;
         front = -1;
         rear = -1;
         array = new int[size];
+    }
+
+    public static ArrayQueue createQueue(int size) {
+        return new ArrayQueue(size);
     }
 
 

@@ -1,5 +1,9 @@
 {   
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
+    ],
+    "java.project.sourcePaths": [
+        "data_structure/stack",
+        "data_structure/queue"
     ]
 }

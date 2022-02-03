@@ -9,7 +9,7 @@
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "program":"${workspaceRoot}/data_structure/**/*.java"
+            "program":"${workspaceRoot}/data_structure/queue/*.java"
         }
     ]
 }

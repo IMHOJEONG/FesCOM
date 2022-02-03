@@ -12,6 +12,10 @@ public class ArrayQueueTest {
     public void setting() {
         arrayQueue = ArrayQueue.createQueue(3);
     }
+    @AfterEach
+    public void resetQueue() {
+        arrayQueue = null;
+    }
 
     @DisplayName("ArrayQueue 생성 및 초기화 createQueue 테스트")
     @Test
@@ -42,10 +46,28 @@ public class ArrayQueueTest {
         arrayQueue.enQueue(1);
         assertThat(arrayQueue.isFull())
             .isSameAs(true);
-
-    }
-
+            
+        }
+        
+        @DisplayName("ArrayQueue getQueueSize 메소드 테스트")
+        @Test
+        public void test_getQueueSize() throws QueueException {
+            arrayQueue.enQueue(1);
+            arrayQueue.enQueue(1);
+            assertThat(arrayQueue.getQueueSize())
+            .isSameAs(2);
+        }
     
+        @DisplayName("ArrayQueue dequeue 메소드 테스트")
+        @Test
+        public void test_Dequeue() throws QueueException {
+            
+            arrayQueue.enQueue(1);
+            arrayQueue.enQueue(1);
+            arrayQueue.deQueue();
+            arrayQueue.deQueue();
+            assertThat(arrayQueue.getQueueSize())
+                .isSameAs(2);
 
-
+        } 
 }

@@ -48,7 +48,7 @@ public class ArrayQueue {
                 rear = (rear+1) % capacity;
                 
                 array[rear] = data;
-                
+
                 if(front == -1){
                     front = rear;
                 }
@@ -61,6 +61,38 @@ public class ArrayQueue {
             throw e;
         }
 
+    }
+
+    public int getQueueSize(){
+        return ((capacity-front+rear+1)%capacity);
+    }
+
+    
+    public int deQueue() throws QueueException {
+        
+        try{
+            
+            if(isEmpty()){
+                throw new QueueException("Queue Empty");
+            }   
+            else {
+                
+                int data = array[front];
+
+                if(front == rear) {
+                    front = rear - 1; 
+                }
+                else {
+                    front = (front+1)%capacity;
+                }
+                return data;
+            }
+            
+        }
+        catch(QueueException e){
+            e.printStackTrace();
+            throw e;
+        }   
 
     }
 

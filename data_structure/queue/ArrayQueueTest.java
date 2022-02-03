@@ -31,7 +31,21 @@ public class ArrayQueueTest {
 
         assertThat(arrayQueue.isEmpty())
             .isSameAs(true);
+    }  
+
+    @DisplayName("ArrayQueue add 메소드 테스트")
+    @Test
+    public void test_isFull() throws QueueException{
+
+        arrayQueue.enQueue(1);
+        arrayQueue.enQueue(1);
+        arrayQueue.enQueue(1);
+        assertThat(arrayQueue.isFull())
+            .isSameAs(true);
+
     }
+
+    
 
 
 }

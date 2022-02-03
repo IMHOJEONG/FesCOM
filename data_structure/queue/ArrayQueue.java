@@ -1,6 +1,13 @@
 import lombok.Getter;
 import lombok.Setter;
 
+
+class QueueException extends Exception {
+    public QueueException(String msg){
+        super(msg);
+    } 
+}
+
 @Getter
 @Setter
 public class ArrayQueue {
@@ -24,6 +31,42 @@ public class ArrayQueue {
     public boolean isEmpty(){
         return (front == -1);
     }
+
+    public boolean isFull(){
+        return ((rear+1)%capacity == front);
+    }
+
+    public void enQueue(int data) throws QueueException{
+        
+        try{
+
+            if(isFull()){
+                throw new QueueException("Queue Overflow");
+            }
+            else {
+                
+                rear = (rear+1) % capacity;
+                
+                array[rear] = data;
+                
+                if(front == -1){
+                    front = rear;
+                }
+    
+            }
+
+        }
+        catch(QueueException e){
+            e.printStackTrace();
+            throw e;
+        }
+
+
+    }
+
+    
+
+
 
 
 }

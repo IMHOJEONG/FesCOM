@@ -1,6 +1,4 @@
 package BinaryTree;
-
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.*;
@@ -45,5 +43,13 @@ public class BinaryTreeTest {
         binaryTree.PreOrderWithRecursion(binaryTree.nodes[0]);
         StringBuilder result = binaryTree.getPreorderStringBuilder();
         assertEquals(result.toString(), "1245367");
+    }
+
+    @DisplayName("InOrder 재귀 작성")
+    @Test
+    public void test_InorderWithRecursion(){
+        binaryTree.InOrderWithRecursion(binaryTree.nodes[0]);
+        StringBuilder result = binaryTree.getInorderStringBuilder();
+        assertEquals(result.toString(), "4251637");
     }
 }

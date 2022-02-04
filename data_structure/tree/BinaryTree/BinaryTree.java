@@ -25,6 +25,7 @@ public class BinaryTree {
     
     BinaryTreeNode[] nodes;
     StringBuilder preorderStringBuilder;
+    StringBuilder inorderStringBuilder;
     
     public BinaryTree() {
         
@@ -43,6 +44,7 @@ public class BinaryTree {
         }
 
         preorderStringBuilder = new StringBuilder();
+        inorderStringBuilder = new StringBuilder();
     }
 
     // preorder
@@ -53,6 +55,15 @@ public class BinaryTree {
             PreOrderWithRecursion(root.left);
             PreOrderWithRecursion(root.right);
         }   
+    }
+
+    // InOrder
+    public void InOrderWithRecursion(BinaryTreeNode root) {
+        if(root != null){
+            InOrderWithRecursion(root.left);
+            inorderStringBuilder.append(root.getData());
+            InOrderWithRecursion(root.right);
+        }
     }
 
 }

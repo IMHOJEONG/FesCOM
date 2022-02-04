@@ -61,4 +61,22 @@ public class TwoExtendsStackTest {
             .hasSize(2);
 
     }
+
+    @DisplayName("두 배 확장 스택 delete 메소드 테스트")
+    @Test
+    public void test_deleteStack() throws StackException{
+        stack.push(1);
+        assertThat(stack.getArray()[0])
+            .isSameAs(1);
+        stack.deleteStack();
+        assertThat(stack.getTop())
+            .isSameAs(-1);
+        assertThat(stack.getArray())
+            .hasSize(1);
+        assertThat(stack.getArray()[0])
+            .isSameAs(0);
+
+    }
+
+
 }

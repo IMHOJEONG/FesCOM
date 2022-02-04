@@ -53,4 +53,9 @@ public class TwoExtendsStack {
         capacity = capacity * 2;
         array = newArray;
     }
+
+    public void deleteStack() {
+        array = new int[capacity];
+        top = -1;
+    }
 }

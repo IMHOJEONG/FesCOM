@@ -3,7 +3,6 @@
         "lib/**/*.jar",
     ],
     "java.project.sourcePaths": [
-        "data_structure/stack",
-        "data_structure/queue"
+        "data_structure/tree"
     ]
 }

@@ -10,14 +10,14 @@
             "request": "launch",
             "mainClass": "ArrayQueueTest",
             "projectName": "Computer_Science_is_important_f5593c13",
-            "program": "${workspaceRoot}/data_structure/queue/*.java"
+            "program": "${workspaceRoot}/data_structure/tree/*.java"
         },
         {
             "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "program": "${workspaceRoot}/data_structure/queue/*.java"
+            "program": "${workspaceRoot}/data_structure/tree/*.java"
         }
     ]
 }

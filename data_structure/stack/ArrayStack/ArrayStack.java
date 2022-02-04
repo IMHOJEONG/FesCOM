@@ -1,3 +1,4 @@
+package ArrayStack;
 import java.util.EmptyStackException;
 
 import lombok.Getter;

@@ -3,6 +3,6 @@
         "lib/**/*.jar",
     ],
     "java.project.sourcePaths": [
-        "data_structure/tree"
+        "data_structure/stack"
     ]
 }

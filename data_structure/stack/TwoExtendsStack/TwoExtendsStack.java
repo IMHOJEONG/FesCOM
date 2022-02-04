@@ -26,21 +26,13 @@ public class TwoExtendsStack {
         return (top == -1);
     }
 
-    public void push(int data) throws StackException{
-        
-        
-        try{
-            if(isStackFull()) {
-                throw new StackException("스택 꽉 찼어");
-            }
-            array[++top] = data;
-
+    public void push(int data){
+            
+        if(isStackFull()) {
+            doubleStack();
         }
-        catch(StackException e){
-            e.printStackTrace();
-            throw e;
-        }
-        
+        array[++top] = data;
+    
     }
 
     public boolean isStackFull() {

@@ -18,12 +18,32 @@ public class BinaryTreeTest {
     @DisplayName("BinaryTree 생성 확인")
     @Test
     public void test_makeBinaryTree() {
-        assertThat(binaryTree.getNodes())
-            .hasSize(7);
+        
+        BinaryTreeNode[] result = binaryTree.getNodes();
 
-        int target = 1;
-        for(BinaryTreeNode data : binaryTree.getNodes()){
-            assertEquals(data.getData(), target++);
+        assertThat(result)
+            .hasSize(7);
+            
+            int target = 1;
+            for(BinaryTreeNode data : result){
+                assertEquals(data.getData(), target++);
+            }
+        
+        for(int i = 1 ; i <= result.length / 2; i++){
+            
+            assertThat(result[i-1].left.data)
+                .isSameAs(2*i);
+            assertThat(result[i-1].right.data)
+                .isSameAs(2*i+1);
         }
+
+    }
+
+    @DisplayName("PreOrder 재귀 작성")
+    @Test 
+    public void test_PreorderWithRecursion(){
+        binaryTree.PreOrderWithRecursion(binaryTree.nodes[0]);
+        StringBuilder result = binaryTree.getPreorderStringBuilder();
+        assertEquals(result.toString(), "1245367");
     }
 }

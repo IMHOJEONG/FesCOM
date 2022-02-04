@@ -24,6 +24,7 @@ class BinaryTreeNode {
 public class BinaryTree {
     
     BinaryTreeNode[] nodes;
+    StringBuilder preorderStringBuilder;
     
     public BinaryTree() {
         
@@ -37,16 +38,21 @@ public class BinaryTree {
             int right = 2 * i + 1;
 
             nodes[i-1].setLeft(nodes[left-1]);
-            nodes[i-1].setLeft(nodes[right-1]);
+            nodes[i-1].setRight(nodes[right-1]);
 
         }
-        
+
+        preorderStringBuilder = new StringBuilder();
     }
-    // preorder
-    public void PreOrder(BinaryTreeNode root){
-        if(root != null){
 
-        }
+    // preorder
+    public void PreOrderWithRecursion(BinaryTreeNode root){
+
+        if(root != null){
+            preorderStringBuilder.append(root.getData());
+            PreOrderWithRecursion(root.left);
+            PreOrderWithRecursion(root.right);
+        }   
     }
 
 }

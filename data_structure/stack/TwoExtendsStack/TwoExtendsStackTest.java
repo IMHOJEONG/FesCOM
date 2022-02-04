@@ -46,7 +46,19 @@ public class TwoExtendsStackTest {
             .isSameAs(false);
         stack.push(1);
         assertThat(stack.isStackFull())
-            .isSameAs(true);
+        .isSameAs(true);
     }
+    
+    @DisplayName("두 배 확장 스택 doubleStack 메소드 테스트")
+    @Test
+    public void test_doubleStack() throws StackException{
+        stack.doubleStack();
+        assertThat(stack.getCapacity())
+            .isSameAs(2);
+        assertThat(stack.getTop())
+            .isSameAs(-1);
+        assertThat(stack.getArray())
+            .hasSize(2);
 
+    }
 }

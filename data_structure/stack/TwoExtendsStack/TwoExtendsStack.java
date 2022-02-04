@@ -45,5 +45,12 @@ public class TwoExtendsStack {
 
     public boolean isStackFull() {
         return (top == capacity-1);
+    }   
+
+    public void doubleStack(){
+        int[] newArray = new int[capacity*2];
+        System.arraycopy(array, 0, newArray, 0, capacity);
+        capacity = capacity * 2;
+        array = newArray;
     }
 }

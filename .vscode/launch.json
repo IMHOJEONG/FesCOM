@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch BOJ_3055",
+            "request": "launch",
+            "mainClass": "BOJ_3055",
+            "projectName": "Computer_Science_is_important_f5593c13"
+        },
+        {
+            "type": "java",
             "name": "Launch ArrayQueueTest",
             "request": "launch",
             "mainClass": "ArrayQueueTest",

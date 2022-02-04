@@ -3,6 +3,12 @@ package TwoExtendsStack;
 import lombok.Getter;
 import lombok.Setter;
 
+class StackException extends Exception {
+    public StackException(String msg){
+        super(msg);
+    }
+}
+
 @Getter
 @Setter
 public class TwoExtendsStack {
@@ -18,5 +24,11 @@ public class TwoExtendsStack {
 
     public boolean isEmpty() {
         return (top == -1);
+    }
+
+    public void push(int data) throws StackException{
+        
+            array[++top] = data;
+        
     }
 }

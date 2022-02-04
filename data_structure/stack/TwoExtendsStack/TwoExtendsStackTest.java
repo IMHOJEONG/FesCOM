@@ -31,4 +31,12 @@ public class TwoExtendsStackTest {
         
     }
 
+    @DisplayName("두 배 확장 스택 push 메소드 테스트")
+    @Test
+    public void test_PushFull() throws StackException{
+        stack.push(1);
+        assertThat(stack.getArray()[0])
+            .isSameAs(1);
+    }
+
 }

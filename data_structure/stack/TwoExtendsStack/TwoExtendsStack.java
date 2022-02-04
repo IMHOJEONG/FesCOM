@@ -28,7 +28,22 @@ public class TwoExtendsStack {
 
     public void push(int data) throws StackException{
         
-            array[++top] = data;
         
+        try{
+            if(isStackFull()) {
+                throw new StackException("스택 꽉 찼어");
+            }
+            array[++top] = data;
+
+        }
+        catch(StackException e){
+            e.printStackTrace();
+            throw e;
+        }
+        
+    }
+
+    public boolean isStackFull() {
+        return (top == capacity-1);
     }
 }

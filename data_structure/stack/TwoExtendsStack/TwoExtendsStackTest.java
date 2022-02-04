@@ -39,4 +39,14 @@ public class TwoExtendsStackTest {
             .isSameAs(1);
     }
 
+    @DisplayName("두 배 확장 스택 isStackFull 메소드 테스트")
+    @Test 
+    public void test_isStackFull() throws StackException{
+        assertThat(stack.isStackFull())
+            .isSameAs(false);
+        stack.push(1);
+        assertThat(stack.isStackFull())
+            .isSameAs(true);
+    }
+
 }

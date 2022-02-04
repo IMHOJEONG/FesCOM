@@ -23,4 +23,12 @@ public class TwoExtendsStackTest {
             .hasSize(1);
     }
 
+    @DisplayName("두 배 확장 스택 isEmpty 메소드 테스트")
+    @Test
+    public void test_isEmpty(){
+        assertThat(stack.isEmpty())
+            .isSameAs(true);
+        
+    }
+
 }

@@ -15,4 +15,8 @@ public class TwoExtendsStack {
         array = new int[capacity];
         top = -1;
     }
+
+    public boolean isEmpty() {
+        return (top == -1);
+    }
 }

@@ -52,4 +52,12 @@ public class BinaryTreeTest {
         StringBuilder result = binaryTree.getInorderStringBuilder();
         assertEquals(result.toString(), "4251637");
     }
+
+    @DisplayName("PostOrder 재귀 작성")
+    @Test
+    public void test_PostOrderWithRecursion() {
+        binaryTree.PostOrderWithRecursion(binaryTree.nodes[0]);
+        StringBuilder result = binaryTree.getPostorderStringBuilder();
+        assertEquals(result.toString(), "4526731");
+    }
 }

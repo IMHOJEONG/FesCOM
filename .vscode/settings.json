@@ -4,6 +4,6 @@
     ],
     "java.project.sourcePaths": [
         "algorithms/baekjoon",
-        "data_structure/stack",
+        "data_structure/LinkedList/SingleLinkedList"
     ]
 }

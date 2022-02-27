@@ -1,5 +1,5 @@
-<p>
-    <img src="./main_image.webp" alt="기본 이미지" style="borderRadius: 100px;">
+<p style="font-size:50px;" align="center">
+    🅕🅔🅢🅒🅞🅜
 </p>
 
 <p align="left"> FesCOM is to study Computer Science & improve FrontEnd Skills</p>

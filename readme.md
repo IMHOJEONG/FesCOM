@@ -1,6 +1,6 @@
-<p style="font-size:50px;" align="center">
+<h1 align="center">
     🅕🅔🅢🅒🅞🅜
-</p>
+</h1>
 
 <p align="left"> FesCOM is to study Computer Science & improve FrontEnd Skills</p>
 

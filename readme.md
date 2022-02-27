@@ -2,9 +2,7 @@
     <img src="./main_image.webp" alt="기본 이미지" style="borderRadius: 100px;">
 </p>
 
-<p align="left"> FeEndCOM </p>
-
-<p align="left"> To study Computer Science & improve FrontEnd Skills </p>
+<p align="left"> FesCOM is to study Computer Science & improve FrontEnd Skills</p>
 
 ### 🗂️ Index 
 

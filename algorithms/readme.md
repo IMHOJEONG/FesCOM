@@ -34,6 +34,7 @@
 | [1372A Omkar and Completion](https://codeforces.com/problemset/problem/1372/A) | [해답](./codeforces/1372A_Omkar_and_Completion.java) | 
 | [1385B Restore the Permutation by Merger](https://codeforces.com/problemset/problem/1385/B) | [해답](./codeforces/1385B_Restore_the_Permutation_by_Merger.java) | 
 | [1397A Juggling Letters](https://codeforces.com/problemset/problem/1397/A) | [해답](./codeforces/1397A_Juggling_Letters.java) | 
+| [1398A Bad Triangle](https://codeforces.com/problemset/problem/1398/A) | [해답](./codeforces/1398A_Bad_Triangle.java) | 
 | [1400A String Similarity](https://codeforces.com/problemset/problem/1400/A) | [해답](./codeforces/1400A_String_Similarity.java) | 
 | [1433B Yet Another Bookshelf](https://codeforces.com/problemset/problem/1433/B) | [해답](./codeforces/1433B_Yet_Another_Bookshelf.java) | 
 | [1451A Subtract or Divide](https://codeforces.com/problemset/problem/1451/A) | [해답](./codeforces/1451A_Subtract_or_Divide.java) | 
@@ -43,6 +44,7 @@
 | [1490A Dense Array](https://codeforces.com/problemset/problem/1490/A) | [해답](./codeforces/1490A_Dense_Array.java) | 
 | [1506A Strange Table](https://codeforces.com/problemset/problem/1506/A) | [해답](./codeforces/1506A_Strange_Table.java) | 
 | [1526A Mean Inequality](https://codeforces.com/problemset/problem/1526/A) | [해답](./codeforces/1526A_Mean_Inequality.java) | 
+| [1527A And Then There Were K](https://codeforces.com/problemset/problem/1526/A) | [해답](./codeforces/1527A_And_Then_There_Were_K.java) | 
 | [1529A Eshag Loves Big Arrays](https://codeforces.com/problemset/problem/1529/A) | [해답](./codeforces/1529A_Eshag_Loves_Big_Arrays.java) | 
 | [1538A Stone Game](https://codeforces.com/problemset/problem/1538/A) | [해답](./codeforces/1538A_Stone_Game.java) | 
 | [1547A Shortest Path With Obstacle](https://codeforces.com/problemset/problem/1547/A) | [해답](./codeforces/1547A_Shortest_Path_With_Obstacle.java) | 

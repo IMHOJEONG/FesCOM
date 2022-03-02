@@ -39,6 +39,7 @@
 | [1370A Maximum GCD](https://codeforces.com/problemset/problem/1370/A) | [해답](./codeforces/1370A_Maximum_GCD.java) | 
 | [1371A Magical Sticks](https://codeforces.com/problemset/problem/1371/A) | [해답](./codeforces/1371A_Magical_Sticks.java) | 
 | [1372A Omkar and Completion](https://codeforces.com/problemset/problem/1372/A) | [해답](./codeforces/1372A_Omkar_and_Completion.java) | 
+| [1382A Common Subsequence](https://codeforces.com/problemset/problem/1382/A) | [해답](./codeforces/1382A_Common_Subsequence.java) | 
 | [1385B Restore the Permutation by Merger](https://codeforces.com/problemset/problem/1385/B) | [해답](./codeforces/1385B_Restore_the_Permutation_by_Merger.java) | 
 | [1397A Juggling Letters](https://codeforces.com/problemset/problem/1397/A) | [해답](./codeforces/1397A_Juggling_Letters.java) | 
 | [1398A Bad Triangle](https://codeforces.com/problemset/problem/1398/A) | [해답](./codeforces/1398A_Bad_Triangle.java) | 

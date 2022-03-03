@@ -46,6 +46,7 @@
 | [1400A String Similarity](https://codeforces.com/problemset/problem/1400/A) | [해답](./codeforces/1400A_String_Similarity.java) | 
 | [1433B Yet Another Bookshelf](https://codeforces.com/problemset/problem/1433/B) | [해답](./codeforces/1433B_Yet_Another_Bookshelf.java) | 
 | [1451A Subtract or Divide](https://codeforces.com/problemset/problem/1451/A) | [해답](./codeforces/1451A_Subtract_or_Divide.java) | 
+| [1454B Unique Bid Auction](https://codeforces.com/problemset/problem/1454/B) | [해답](./codeforces/1454B_Unique_Bid_Auction.java) | 
 | [1462A Favorite Sequence](https://codeforces.com/problemset/problem/1462/A) | [해답](./codeforces/1462A_Favorite_Sequence.java) | 
 | [1472B Fair Division](https://codeforces.com/problemset/problem/1472/B) | [해답](./codeforces/1472B_Fair_Division.java) | 
 | [1473A Replacing Elements](https://codeforces.com/problemset/problem/1473/A) | [해답](./codeforces/1473A_Replacing_Elements.java) | 
@@ -55,6 +56,7 @@
 | [1527A And Then There Were K](https://codeforces.com/problemset/problem/1526/A) | [해답](./codeforces/1527A_And_Then_There_Were_K.java) | 
 | [1529A Eshag Loves Big Arrays](https://codeforces.com/problemset/problem/1529/A) | [해답](./codeforces/1529A_Eshag_Loves_Big_Arrays.java) | 
 | [1538A Stone Game](https://codeforces.com/problemset/problem/1538/A) | [해답](./codeforces/1538A_Stone_Game.java) | 
+| [1541A Pretty Permutations](https://codeforces.com/problemset/problem/1541/A) | [해답](./codeforces/1541A_Pretty_Permutations.java) | 
 | [1547A Shortest Path With Obstacle](https://codeforces.com/problemset/problem/1547/A) | [해답](./codeforces/1547A_Shortest_Path_With_Obstacle.java) | 
 | [1549A Gregor and Cryptography](https://codeforces.com/problemset/problem/1549/A) | [해답](./codeforces/1549A_Gregor_and_Cryptography.java) | 
 | [1553A Digits Sum](https://codeforces.com/problemset/problem/1553/A) | [해답](./codeforces/1553A_Digits_Sum.java) | 

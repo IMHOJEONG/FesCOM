@@ -60,6 +60,7 @@
 | [1541A Pretty Permutations](https://codeforces.com/problemset/problem/1541/A) | [해답](./codeforces/1541A_Pretty_Permutations.java) | 
 | [1547A Shortest Path With Obstacle](https://codeforces.com/problemset/problem/1547/A) | [해답](./codeforces/1547A_Shortest_Path_With_Obstacle.java) | 
 | [1549A Gregor and Cryptography](https://codeforces.com/problemset/problem/1549/A) | [해답](./codeforces/1549A_Gregor_and_Cryptography.java) | 
+| [1551B1 Wonderful Coloring 1](https://codeforces.com/problemset/problem/1551/B1) | [해답](./codeforces/1551B1_Wonderful_Coloring_1.java) | 
 | [1553A Digits Sum](https://codeforces.com/problemset/problem/1553/A) | [해답](./codeforces/1553A_Digits_Sum.java) | 
 | [1560B Who's Opposite](https://codeforces.com/problemset/problem/1560/B) | [해답](./codeforces/1560B_Who's_Opposite.java) | 
 | [1567A Domino Disaster](https://codeforces.com/problemset/problem/1567/A) | [해답](./codeforces/1567A_Domino_Disaster.java) | 

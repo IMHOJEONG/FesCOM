@@ -26,6 +26,7 @@
 | [935A Fafa and his Company](https://codeforces.com/problemset/problem/935/A) | [해답](./codeforces/935A_Fafa_and_his_Company.java)| 
 | [959A Mahmoud and Ehab and the even odd game](https://codeforces.com/problemset/problem/959/A) | [해답](./codeforces/959A_Mahmoud_and_Ehab_and_the_even-odd_game.java)| 
 | [996A Hit the Lottery](https://codeforces.com/problemset/problem/996/A) | [해답](./codeforces/996A_Hit_the_Lottery.java)| 
+| [1196A Three Piles of Candies](https://codeforces.com/problemset/problem/1196/A) | [해답](./codeforces/1196A_Three_Piles_of_Candies.java)| 
 | [1220A Cards](codeforces.com/problemset/problem/1220/A) | [해답](./codeforces/1220A_Cards.java)| 
 | [1285A Mezo Playing Zoma](https://codeforces.com/problemset/problem/1285/A) | [해답](./codeforces/1285A_Mezo_Playing_Zoma.java)| 
 | [1296A Array with Odd Sum](https://codeforces.com/problemset/problem/1296/A) | [해답](./codeforces/1296A_Array_with_Odd_Sum.java) | 

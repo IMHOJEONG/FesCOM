@@ -29,6 +29,7 @@
 | [996A Hit the Lottery](https://codeforces.com/problemset/problem/996/A) | [해답](./codeforces/996A_Hit_the_Lottery.java)| 
 | [1196A Three Piles of Candies](https://codeforces.com/problemset/problem/1196/A) | [해답](./codeforces/1196A_Three_Piles_of_Candies.java)| 
 | [1220A Cards](codeforces.com/problemset/problem/1220/A) | [해답](./codeforces/1220A_Cards.java)| 
+| [1234A Cards](codeforces.com/problemset/problem/1234/A) | [해답](./codeforces/1234A_Equalize_Prices_Again.java)| 
 | [1285A Mezo Playing Zoma](https://codeforces.com/problemset/problem/1285/A) | [해답](./codeforces/1285A_Mezo_Playing_Zoma.java)| 
 | [1296A Array with Odd Sum](https://codeforces.com/problemset/problem/1296/A) | [해답](./codeforces/1296A_Array_with_Odd_Sum.java) | 
 | [1304A Two Rabbits](https://codeforces.com/problemset/problem/1304/A) | [해답](./codeforces/1304A_Two_Rabbits.java) | 

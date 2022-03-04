@@ -56,6 +56,7 @@
 | [1473A Replacing Elements](https://codeforces.com/problemset/problem/1473/A) | [해답](./codeforces/1473A_Replacing_Elements.java) | 
 | [1490A Dense Array](https://codeforces.com/problemset/problem/1490/A) | [해답](./codeforces/1490A_Dense_Array.java) | 
 | [1506A Strange Table](https://codeforces.com/problemset/problem/1506/A) | [해답](./codeforces/1506A_Strange_Table.java) | 
+| [1511A Review Site](https://codeforces.com/problemset/problem/1511/A) | [해답](./codeforces/1511A_Review_Site.java) | 
 | [1526A Mean Inequality](https://codeforces.com/problemset/problem/1526/A) | [해답](./codeforces/1526A_Mean_Inequality.java) | 
 | [1527A And Then There Were K](https://codeforces.com/problemset/problem/1526/A) | [해답](./codeforces/1527A_And_Then_There_Were_K.java) | 
 | [1529A Eshag Loves Big Arrays](https://codeforces.com/problemset/problem/1529/A) | [해답](./codeforces/1529A_Eshag_Loves_Big_Arrays.java) | 
@@ -100,3 +101,10 @@
 | [나머지가 1이되는 수 찾기](https://programmers.co.kr/learn/courses/30/lessons/87389) | [해답](./programmers/월간코드챌린지시즌3_나머지가1이되는수찾기.java) |
 | [예산](https://programmers.co.kr/learn/courses/30/lessons/12982) | [해답](./programmers/Summer&WinterCoding_예산.java) |
 |   |   |
+
+
+### 현재 못 푼 문제 
+
+- Codeforces : Denial of Judgement
+
+  [1633A](https://codeforces.com/problemset/problem/1633/A)

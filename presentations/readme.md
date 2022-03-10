@@ -1,12 +1,21 @@
-### presentation 폴더
+<p align="center">
+    <img src="./images/main_image.webp">
 
-- Study를 하며 만든 ppt를 올려두는 repo
+</p>
+
+### presentation folder 
+
+
+
+
+
+- Computer Science에 대해 깊게 공부하고 각자 발표하는 스터디 발표 자료 
 
 - 2022.02.02 
 
     - slideshare 대신 issuu 사이트를 선택
 
-- [my issuu 계정](https://issuu.com/39ghwjd)
+- [https://issuu.com/39ghwjd](https://issuu.com/39ghwjd)
 
 
 

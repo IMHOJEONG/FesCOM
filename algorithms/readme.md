@@ -76,6 +76,7 @@
 | [1626B Minor Reduction](https://codeforces.com/problemset/problem/1626/B) | [해답](./codeforces/1626B_Minor_Reduction.java) | 
 | [1627A Not Shading](https://codeforces.com/problemset/problem/1627/A) | [해답](./codeforces/1627A_Not_Shading.java) | 
 | [1629B GCD Arrays](https://codeforces.com/problemset/problem/1629/B) | [해답](./codeforces/1629B_GCD_Arrays.java) | 
+| [1631A GCD Arrays](https://codeforces.com/problemset/problem/1631/A) | [해답](./codeforces/1631A_Min_Max_Swap.java) | 
 |   |   |
 |   |   |
 

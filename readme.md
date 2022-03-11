@@ -12,7 +12,6 @@
 - [FEConf](./FEConf/)
 - [NaverD2](./NaverD2/)
 - [Books](./books/)
-- [Fast Campus](./fastCampus/)
 - [Recruitment briefing](./recruitmentBriefing)
 
 ### 🔗 ISSUU LINK 

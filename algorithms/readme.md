@@ -87,6 +87,7 @@
 | [BOJ_2798](https://www.acmicpc.net/problem/2798) | [해답](./baekjoon/BOJ_2798.java) |
 | [BOJ_2920](https://www.acmicpc.net/problem/2920) | [해답](./baekjoon/BOJ_2920.java) |
 | [BOJ_3055](https://www.acmicpc.net/problem/3055) | [해답](./baekjoon/BOJ_3055.java) |
+| [BOJ_6800](https://www.acmicpc.net/problem/6800) | [해답](./baekjoon/BOJ_6800.java) |
 |   |   |
 |   |   |
 
